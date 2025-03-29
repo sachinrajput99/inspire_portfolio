@@ -50,7 +50,7 @@ const ProcessSection = () => {
     <section className="bg-white dark:bg-black text-gray-900 dark:text-white py-20 px-4">
       <div className="text-center mb-16">
         <motion.p
-          className="inline-block px-4 py-1 bg-blue-200 dark:bg-blue-800 text-blue-700  rounded-full text-sm  dark:text-gray-400"
+          className="inline-block px-4 py-1 bg-blue-200 dark:bg-blue-800 text-blue-700  rounded-full text-sm  dark:text-white"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

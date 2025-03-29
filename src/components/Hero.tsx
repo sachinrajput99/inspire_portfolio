@@ -26,7 +26,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
             >
-              <p className="text-sm px-4 py-1 bg-blue-200 dark:bg-blue-800 text-blue-700 dark:text-blue-300 rounded-full inline-block">
+              <p className="text-sm px-4 py-1 bg-blue-200 dark:bg-blue-800 text-blue-700 dark:text-white rounded-full inline-block">
                 ⬤ Software Agency
               </p>
               <h1 className="text-6xl font-bold mt-4">

@@ -35,7 +35,7 @@ const Services = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-20"
         >
-          <p className="text-sm px-5 py-2 bg-blue-200 dark:bg-blue-800 text-blue-700 dark:text-blue-300 rounded-full inline-block">
+          <p className="text-sm px-5 py-2 bg-blue-200 dark:bg-blue-800 text-blue-700 dark:text-white rounded-full inline-block">
             ⬤ Our Expertise
           </p>
           <h2 className="text-5xl font-bold mt-5">
