@@ -9,7 +9,7 @@ import Portfolio from "./components/Portfolio";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import CustomButton from "./components/CustomButton";
-import ProcessSection from "./components/Processsection";
+import ProcessSection from "./components/ProcessSection";
 import Cursor from "./components/Cursor";
 
 const App: React.FC = () => {
