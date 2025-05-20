@@ -41,7 +41,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
             >
-              <p className="mt-4 text-lg text-gray-700 dark:text-gray-300 max-w-xl mx-auto">
+              <p className="mt-4  p-6 text-lg text-gray-700 dark:text-gray-300 max-w-xl mx-auto">
                 Transforming ideas into exceptional digital solutions through innovative web development, mobile apps, and strategic SEO services.
               </p>
             </motion.div>

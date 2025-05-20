@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -32,20 +32,46 @@ const App: React.FC = () => {
   };
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
     contactSection?.scrollIntoView({ behavior: "smooth" });
-    setIsMenuOpen(false); // Close mobile menu when clicking contact
+    setIsMenuOpen(false);
   };
+
+  // Hide menu when clicking outside or scrolling
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const handleScroll = () => {
+      setIsMenuOpen(false);
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div
       className={`min-h-screen overflow-x-hidden ${isDarkMode ? "dark" : ""}`}
     >
       <main className="bg-white dark:bg-black transition-colors flex flex-col">
+        {/* Navbar */}
         <div className="dark:bg-black bg-white flex justify-center pt-10">
-          <nav className="flex flex-row justify-between z-50 bg-white dark:bg-gray-900 shadow-lg rounded-full px-6 py-3 w-[90%] border border-gray-300 dark:border-gray-700">
+          <nav className="flex   top-14 flex-row justify-between z-50 bg-white dark:bg-gray-900 shadow-lg rounded-full px-6 py-3 w-[90%] border border-gray-300 dark:border-gray-700">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -76,6 +102,18 @@ const App: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <div className="md:hidden">
+              <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg mr-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all border border-gray-400 dark:border-gray-600"
+            >
+              {isDarkMode ? (
+                <Sun className="w-6 h-6 text-gray-900 dark:text-white" />
+              ) : (
+                <Moon className="w-6 h-6 text-gray-900 dark:text-white" />
+              )}
+            </motion.button>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all"
@@ -86,13 +124,17 @@ const App: React.FC = () => {
                   <Menu className="w-6 h-6 text-gray-900 dark:text-white" />
                 )}
               </button>
+              
             </div>
           </nav>
         </div>
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-          <div className="md:hidden fixed top-28 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 px-6 py-4 w-[80%] flex flex-col items-start space-y-4 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md z-40 transition-all ">
+          <div
+            ref={menuRef}
+            className="md:hidden fixed top-28 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 px-6 py-4 w-[80%] flex flex-col items-start space-y-4 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md z-40 transition-all"
+          >
             <NavLink href="#services" onClick={() => setIsMenuOpen(false)}>
               Services
             </NavLink>
@@ -103,21 +145,11 @@ const App: React.FC = () => {
               Portfolio
             </NavLink>
             <CustomButton text="Contact Us" onClick={scrollToContact} />
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleDarkMode}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all border border-gray-400 dark:border-gray-600"
-            >
-              {isDarkMode ? (
-                <Sun className="w-5 h-5 text-gray-900 dark:text-white" />
-              ) : (
-                <Moon className="w-5 h-5 text-gray-900 dark:text-white" />
-              )}
-            </motion.button>
+            
           </div>
         )}
 
+        {/* Other Sections */}
         <div className="hidden md:block">
           <Cursor />
         </div>
