@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { motion ,AnimatePresence} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -11,7 +11,6 @@ import Footer from "./components/Footer";
 import CustomButton from "./components/CustomButton";
 import ProcessSection from "./components/ProcessSection";
 import Cursor from "./components/Cursor";
-
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
@@ -41,7 +40,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen overflow-x-hidden ${isDarkMode ? "dark" : ""}`}>
+    <div
+      className={`min-h-screen overflow-x-hidden ${isDarkMode ? "dark" : ""}`}
+    >
       <main className="bg-white dark:bg-black transition-colors flex flex-col">
         <div className="dark:bg-black bg-white flex justify-center pt-10">
           <nav className="flex flex-row justify-between z-50 bg-white dark:bg-gray-900 shadow-lg rounded-full px-6 py-3 w-[90%] border border-gray-300 dark:border-gray-700">
@@ -91,10 +92,16 @@ const App: React.FC = () => {
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-  <div className="md:hidden fixed top-28 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 px-6 py-4 w-[80%] flex flex-col items-start space-y-4 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md z-40 transition-all ">
-                <NavLink href="#services" onClick={() => setIsMenuOpen(false)}>Services</NavLink>
-            <NavLink href="#why-choose-us" onClick={() => setIsMenuOpen(false)}>Why Us</NavLink>
-            <NavLink href="#portfolio" onClick={() => setIsMenuOpen(false)}>Portfolio</NavLink>
+          <div className="md:hidden fixed top-28 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 px-6 py-4 w-[80%] flex flex-col items-start space-y-4 rounded-xl border border-gray-300 dark:border-gray-700 shadow-md z-40 transition-all ">
+            <NavLink href="#services" onClick={() => setIsMenuOpen(false)}>
+              Services
+            </NavLink>
+            <NavLink href="#why-choose-us" onClick={() => setIsMenuOpen(false)}>
+              Why Us
+            </NavLink>
+            <NavLink href="#portfolio" onClick={() => setIsMenuOpen(false)}>
+              Portfolio
+            </NavLink>
             <CustomButton text="Contact Us" onClick={scrollToContact} />
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -111,7 +118,9 @@ const App: React.FC = () => {
           </div>
         )}
 
-        <Cursor />
+        <div className="hidden md:block">
+          <Cursor />
+        </div>
         <Hero />
         <Services />
         <ProcessSection />
