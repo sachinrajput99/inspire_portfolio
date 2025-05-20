@@ -34,6 +34,7 @@ const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
+
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
     contactSection?.scrollIntoView({ behavior: "smooth" });
@@ -68,7 +69,10 @@ const App: React.FC = () => {
     <div
       className={`min-h-screen overflow-x-hidden ${isDarkMode ? "dark" : ""}`}
     >
-      <main className="bg-white dark:bg-black transition-colors flex flex-col">
+      {/* <main className="bg-white dark:bg-black transition-colors flex flex-col">
+       */}
+       <main className="bg-white dark:bg-black transition-colors duration-500 ease-in-out flex flex-col">
+
         {/* Navbar */}
         <div className="dark:bg-black bg-white flex justify-center pt-10">
           <nav className="flex   top-14 flex-row justify-between z-50 bg-white dark:bg-gray-900 shadow-lg rounded-full px-6 py-3 w-[90%] border border-gray-300 dark:border-gray-700">
@@ -161,6 +165,7 @@ const App: React.FC = () => {
         <Portfolio />
         <ContactSection />
         <Footer />
+        
       </main>
     </div>
   );
